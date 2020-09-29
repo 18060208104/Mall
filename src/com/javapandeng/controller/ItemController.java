@@ -142,7 +142,7 @@ public class ItemController extends BaseController {
     @RequestMapping("/shoplist")
     public String shoplist(Item item,String condition,Model model){
         String sql = "select * from item where isDelete=0";
-        if(!isEmpty(item.getCategoryIdTwo())){
+        if(!isEmpty(item.getCategoryIdTwo())){ //证明二级分类不是空
             sql +=" and category_id_two = " +item.getCategoryIdTwo();
         }
         if(!isEmpty(condition)){

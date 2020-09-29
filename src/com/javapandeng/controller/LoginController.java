@@ -3,8 +3,11 @@ package com.javapandeng.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.javapandeng.base.BaseController;
-import com.javapandeng.po.Manage;
+import com.javapandeng.po.*;
+import com.javapandeng.service.ItemCategoryService;
+import com.javapandeng.service.ItemService;
 import com.javapandeng.service.ManageService;
+import com.javapandeng.service.UserService;
 import com.javapandeng.utils.Consts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.registry.infomodel.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,12 @@ public class LoginController extends BaseController {
 
     @Autowired
     ManageService manageService;
-
+    @Autowired
+    ItemCategoryService  itemCategoryService;
+    @Autowired
+    ItemService itemService;
+    @Autowired
+    UserService userService;
    @RequestMapping("login")
     public String  login(){
        return "login/mLogin";
@@ -97,9 +104,9 @@ public class LoginController extends BaseController {
 
     *//**
      * 前端首页
-     *//*
+     */
     @RequestMapping("/uIndex")
-    public String uIndex(Model model, Item item,HttpServletRequest request){
+    public String uIndex(Model model, Item item, HttpServletRequest request){
         String sql1 = "select * from item_category where isDelete=0 and pid is null order by name";
         List<ItemCategory> fatherList = itemCategoryService.listBySqlReturnEntity(sql1);
         List<CategoryDto> list = new ArrayList<>();
@@ -122,54 +129,54 @@ public class LoginController extends BaseController {
         //热销商品
         List<Item> rxs = itemService.listBySqlReturnEntity("select * from item where isDelete=0 order by gmNum desc limit 0,10");
         model.addAttribute("rxs",rxs);
-
         return "login/uIndex";
     }
 
-    *//**普通用户注册*//*
+    /**普通用户注册*/
     @RequestMapping("/res")
     public String res(){
         return "login/res";
     }
 
-    *//**执行普通用户注册*//*
+    /**执行普通用户注册*/
     @RequestMapping("/toRes")
     public String toRes(User u){
         userService.insert(u);
-        return "login/uLogin";
+        return "login/uLogin";  //注册完之后跳转到登录页面
     }
 
-    *//**普通用户登录入口*//*
+    /**普通用户登录入口*/
     @RequestMapping("/uLogin")
     public String uLogin(){
         return "login/uLogin";
     }
 
-    *//**执行普通用户登录*//*
+    /**执行普通用户登录*/
     @RequestMapping("/utoLogin")
-    public String utoLogin(User u,HttpServletRequest request){
+    public String utoLogin(User u,HttpServletRequest request){   //这个User 对象还是前台传过来的参数
         User byEntity = userService.getByEntity(u);
-        if(byEntity==null){
-            return "redirect:/login/res.action";
+        if(byEntity==null){   //判断是否为空 也就是去查询在数据库中是否存在这个账号（实体）
+            return "redirect:/login/res.action";   //如果没有查到就重定向到注册页面
         }else {
             request.getSession().setAttribute("role",2);
             request.getSession().setAttribute(Consts.USERNAME,byEntity.getUserName());
             request.getSession().setAttribute(Consts.USERID,byEntity.getId());
-            return "redirect:/login/uIndex.action";
+            return "redirect:/login/uIndex.action";//将信息保存到seesion里面
         }
     }
 
-    *//**前端用户退出*//*
+    /**前端用户退出*/
     @RequestMapping("/uTui")
     public String uTui(HttpServletRequest request){
         HttpSession session = request.getSession();
-        session.invalidate();
+        session.invalidate();  //删除这个用户的session session.invalidate()，
+        // 它实际上调用的是session对象中的destroy方法，也就是说你下次要再使用session，得再重新创建。  简单的说，就是没了，而不是值为null
         return "redirect:/login/uIndex.action";
     }
 
-    *//**
+    /**
      * 修改密码入口
-     *//*
+     */
     @RequestMapping("/pass")
     public String pass(HttpServletRequest request){
         Object attribute = request.getSession().getAttribute(Consts.USERID);
@@ -182,9 +189,9 @@ public class LoginController extends BaseController {
         return "login/pass";
     }
 
-    *//**
+    /**
      * 修改密码操作
-     *//*
+     */
     @RequestMapping("/upass")
     @ResponseBody
     public String upass(String password,HttpServletRequest request){
@@ -201,6 +208,6 @@ public class LoginController extends BaseController {
         js.put(Consts.RES,1);
         return js.toString();
     }
-*/
+
 
 }
