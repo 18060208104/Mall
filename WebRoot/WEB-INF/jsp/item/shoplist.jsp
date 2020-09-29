@@ -50,7 +50,7 @@
                 <h3 class="spName">${data.name}</h3>
                 <p class="center_yh block_yh hidden_yh" style="width: 202px;">
                     <font class="left_yh red font16">￥${data.price}</font>
-                    <c:if test="${data.zk!=null}">
+                  <c:if test="${data.zk!=null}"><%--   如果折扣不为空--%>
                         <font class="right_yh font14">
                             ${data.zk}
                             <span style="color: red">折</span>

@@ -7,7 +7,7 @@
     <title>首页</title>
     <link type="text/css" rel="stylesheet" href="${ctx}/resource/user/css/style.css">
     <script src="${ctx}/resource/user/js/jquery-1.8.3.min.js"></script>
-    <script src="${ctx}/resource/user/js/jquery.luara.0.0.1.min.js"></script>
+   <script src="${ctx}/resource/user/js/jquery.luara.0.0.1.min.js"></script>  <%--  轮播图需要--%>
 </head>
 <body>
     <%@include file="/common/utop.jsp"%>
