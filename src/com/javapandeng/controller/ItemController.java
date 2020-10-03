@@ -138,7 +138,7 @@ public class ItemController extends BaseController {
 
     /**
      * 按关键字或者二级分类查询
-     *//*
+     */
     @RequestMapping("/shoplist")
     public String shoplist(Item item,String condition,Model model){
         String sql = "select * from item where isDelete=0";
@@ -170,5 +170,5 @@ public class ItemController extends BaseController {
         Item obj = itemService.load(id);
         model.addAttribute("obj",obj);
         return "item/view";
-    }*/
+    }
 }

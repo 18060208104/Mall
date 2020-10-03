@@ -58,19 +58,7 @@ public class LoginController extends BaseController {
        request.getSession().setAttribute(Consts.MANAGE,null);
        return "/login/mLogin";
     }
-    /*@Autowired
-    private ManageService manageService;
-
-    @Autowired
-    private ItemCategoryService itemCategoryService;
-
-    @Autowired
-    private ItemService itemService;
-
-    @Autowired
-    private UserService userService;
-
-    *//**
+   /**
      * 管理员登录前
      * @return
      *//*
