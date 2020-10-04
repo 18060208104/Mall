@@ -38,7 +38,7 @@
             <a href="${ctx}/login/pass">修改密码</a>
         </div>
         <div id="vipRight">
-            <form action="${ctx}/user/exUpdate" method="post" id="myf">
+          <form action="${ctx}/user/exUpdate" method="post" id="myf"> <%--  提交功能 --%>
                 <div class="hidden_yh bj_fff" style="width: 938px;border: 1px solid #ddd;">
                     <div class="width100 font24" style="height: 60px;line-height: 60px;text-indent: 50px; background: #f5f8fa;border-bottom: 1px solid #ddd;">基本信息</div>
                     <div class="width100" style="height: 32px;line-height: 32px;margin-top: 25px;">
@@ -86,7 +86,7 @@
     $(function () {
        $(".sub").click(function () {
            alert("修改成功");
-         $("#myf").submit();
+         $("#myf").submit();  //点击事件  点击之后form表单提交
        });
     });
 </script>

@@ -41,21 +41,21 @@ public class UserController extends BaseController {
      * @param request
      * @return
      */
-/*    @RequestMapping("/view")
+   @RequestMapping("/view")
     public String view(Model model, HttpServletRequest request){
-        Object attribute = request.getSession().getAttribute(Consts.USERID);
+        Object attribute = request.getSession().getAttribute(Consts.USERID);//查看用户是否登录也就是看session里面有没有用户信息
         if(attribute==null){
-            return "redirect:/login/uLogin";
+            return "redirect:/login/uLogin";//跳回登录页面
         }
         Integer userId = Integer.valueOf(attribute.toString());
-        User obj = userService.load(userId);
-        model.addAttribute("obj",obj);
-        return "user/view";
+        User obj = userService.load(userId); //根据用户ID获取到用户
+        model.addAttribute("obj",obj);  //将用户放在model里面  让前端查询
+        return "user/view";  //返回到用户详细页面  个人中心
     }
 
-    *//**
+    /**
      * 执行修改用户信息的操作
-     *//*
+     */
     @RequestMapping("/exUpdate")
     public String exUpdate(User user,HttpServletRequest request){
         Object attribute = request.getSession().getAttribute(Consts.USERID);
@@ -65,5 +65,5 @@ public class UserController extends BaseController {
         user.setId(Integer.valueOf(attribute.toString()));
         userService.updateById(user);
         return "redirect:/user/view.action";
-    }*/
+    }
 }
