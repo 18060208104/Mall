@@ -27,7 +27,7 @@
     <div class="width1200 hidden_yh center_yh">
         <div id="vipRight" style="width: 1200px">
             <div class="hidden_yh bj_fff" style="width: 1198px;border: 1px solid #ddd;">
-                <div class="width100 font24" style="height: 50px;line-height: 50px;width: 200px;text-align: center;">${obj.name}</div>
+                <div class="width100 font24" style="height: 50px;line-height: 50px;width: 200px;text-align: center;">${obj.  name}</div>
                 <div class="hidden_yh" style="padding:20px;width: 1100px;margin: 0 auto">
                     <div class="width100 hidden_yh" style="border-bottom: 1px dashed #ddd;padding-top: 10px;padding-bottom: 10px;">
                         <div class="left_yh" style="width:100%;color: black">

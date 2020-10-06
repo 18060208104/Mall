@@ -172,7 +172,7 @@ public class LoginController extends BaseController {
             return "redirect:/login/uLogin";
         }
         Integer userId = Integer.valueOf(attribute.toString());
-        User load = userService.load(userId);
+        User load = userService.load(userId);//根据组件获取一个实体
         request.setAttribute("obj",load);
         return "login/pass";
     }
@@ -184,7 +184,9 @@ public class LoginController extends BaseController {
     @ResponseBody
     public String upass(String password,HttpServletRequest request){
         Object attribute = request.getSession().getAttribute(Consts.USERID);
-        JSONObject js = new JSONObject();
+        JSONObject js = new JSONObject();  //判断是否登录 (pass.jsp)   success:function (result) {
+                                                            // if(result.res==0){
+                                                              //alert("请登录");
         if(attribute==null){
             js.put(Consts.RES,0);
             return js.toString();

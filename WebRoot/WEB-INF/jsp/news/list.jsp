@@ -31,7 +31,7 @@
             </div>
             <div class="hidden_yh" style="padding:20px;width:898px;">
                 <c:forEach items="${pagers.datas}" var="data" varStatus="l">
-                    <a href="${ctx}/news/view?id=${data.id}">
+                  <a href="${ctx}/news/view?id=${data.id}"> <%--根据传过来的id 点击公告就会作出显示公告的详情内容   --%>
                         <div class="width100 hidden_yh" style="border-bottom: 1px dashed #ddd; padding-top:10px;padding-bottom: 10px;">
                             <div class="left_yh" style="width:580px;">
                                 <font color="red"> ${data.name}</font>

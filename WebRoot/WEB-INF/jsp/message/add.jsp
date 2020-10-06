@@ -76,13 +76,13 @@
             type:"POST",
             url:"${ctx}/message/exAdd.do",
             data:{
-                "name":name,
+                "name":name,          //传递的参数   这三个也就构成了一个留言的实体类  所以后台可以直接接受一个实体Message
                 "phone":phone,
                 "content":content
             },
             success:function (result) {
                 alert("您的反馈很重要，谢谢！")
-                window.location.href = "${ctx}/message/add";
+                window.location.href = "${ctx}/message/add";//成功返回的页面
             }
         });
     });

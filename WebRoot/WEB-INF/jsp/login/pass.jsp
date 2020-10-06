@@ -104,9 +104,9 @@
         }
         $.ajax({
            type:"POST",
-           url:"${ctx}/login/upass.do",
+           url:"${ctx}/login/upass.do",//提交路径
            data:{
-               "password":xin
+                "password":xin // 提交数据  //传递的参数
            },
             success:function (result) {
                 if(result.res==0){
